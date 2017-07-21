@@ -1,6 +1,6 @@
-version: '2.1'
+version: '2'
 services:
-  member:
+  nodo:
     image: parity/parity:${PARITY_VERSION}
     command:
       --config /parity/config/member.toml
@@ -15,28 +15,13 @@ services:
       - 8545:8545
       - 8180:8180
       - 30303:30303
-    networks:
-      app_net:
-        ipv4_address: 192.168.201.10
 
   monitor:
     image: buythewhale/ethstats_monitor
     volumes:
       - ../config/monitor.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
     depends_on:
-      - member
-    networks:
-      app_net:
-        ipv4_address: 192.168.201.100
+      - nodo
 
 volumes:
   member:
-
-networks:
-  app_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-      - subnet: 192.168.201.1/24
-        gateway: 192.168.201.1
