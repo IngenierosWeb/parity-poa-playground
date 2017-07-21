@@ -1,0 +1,45 @@
+[
+  {
+    "name"              : "authority",
+    "script"            : "app.js",
+    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
+    "merge_logs"        : false,
+    "watch"             : true,
+    "max_restarts"      : 10,
+    "exec_interpreter"  : "node",
+    "exec_mode"         : "fork_mode",
+    "env":
+    {
+      "NODE_ENV"        : "production",
+      "RPC_HOST"        : "172.16.0.10",
+      "RPC_PORT"        : "8545",
+      "LISTENING_PORT"  : "30303",
+      "INSTANCE_NAME"   : "",
+      "WS_SERVER"       : "ws://monlyra.ingenierosweb.co:3000",
+      "WS_SECRET"       : "af94e698f",
+      "VERBOSITY"       : 3
+    }
+  },
+  {
+    "name"              : "member",
+    "script"            : "app.js",
+    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
+    "merge_logs"        : false,
+    "watch"             : true,
+    "max_restarts"      : 10,
+    "exec_interpreter"  : "node",
+    "exec_mode"         : "fork_mode",
+    "env":
+    {
+      "NODE_ENV"        : "production",
+      "RPC_HOST"        : "192.168.201.10",
+      "RPC_PORT"        : "8545",
+      "LISTENING_PORT"  : "30303",
+      "INSTANCE_NAME"   : "",
+      "WS_SERVER"       : "ws://monlyra.ingenierosweb.co:3000",
+      "WS_SECRET"       : "af94e698f",
+      "VERBOSITY"       : 3
+    }
+  }
+  
+]

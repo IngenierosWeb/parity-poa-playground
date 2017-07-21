@@ -1,0 +1,45 @@
+version: '2.1'
+services:
+  authority:
+    image: parity/parity:${PARITY_VERSION}
+    command:
+      --config /parity/config/authority.toml
+      --ui-no-validation ui
+      --reserved-peers /parity/config/bootnodes.list
+      --engine-signer ${ENGINE_SIGNER}
+
+    volumes:
+      - ../config:/parity/config:ro
+      - authority:/root/.local/share/io.parity.ethereum/
+#      - ./keys/authority0.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json:ro
+      - ./keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}
+      - ./authority.pwd:/parity/authority.pwd:ro
+    ports:
+      - 8545:8545
+      - 8180:8180
+      - 30303:30303
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.10
+
+  monitor:
+    image: buythewhale/ethstats_monitor
+    volumes:
+      - ../config/monitor.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+    depends_on:
+      - authority
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.100
+
+volumes:
+  authority:
+    
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.0.1/24
+        gateway: 172.16.0.1
