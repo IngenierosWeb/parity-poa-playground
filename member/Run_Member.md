@@ -5,7 +5,9 @@ Configuración de un **cliente** de la red con Docker de manera automática incl
 ### Setup
 0. Instalar [docker](https://docs.docker.com/engine/installation/) y[docker-compose](https://docs.docker.com/compose/install/)
 1. Descarga el repo `git clone https://github.com/IngenierosWeb/parity-poa-testnet && cd parity-poa-testnet/member`
-2. `docker-compose up -d`
+2. Edita el fichero .env y actualiza los parámetros IP con la ip externa del nodo.
+3. El fichero config/monitor.json el parametro INSTANCE_NAME debe ser cambiado por un identificador para la red, puede ser cualqueir cadena.
+4. `docker-compose up -d`
 
 ### Access the Parity UI
 0. Ejecuta `docker-compose logs | grep token=` y copia el token de autorización.

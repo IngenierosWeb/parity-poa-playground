@@ -17,6 +17,7 @@ Configuración de un **miembro validador** de la red con Docker de manera autom�
 2. Edita el fichero .env y actualiza los parámetros IP con la ip externa del nodo y ENGINE_SIGNER con tu dirección de validación.
 
 #### Levantar el servicio
+El fichero config/monitor.json el parametro INSTANCE_NAME debe ser cambiado por un identificador para la red, puede ser cualqueir cadena.
  `docker-compose up -d`
 
 ### Access the Parity UI
