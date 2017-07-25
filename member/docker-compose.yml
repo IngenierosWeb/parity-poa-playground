@@ -1,0 +1,27 @@
+version: '2'
+services:
+  nodo:
+    image: parity/parity:${PARITY_VERSION}
+    command:
+      --config /parity/config/member.toml
+      --ui-no-validation ui
+      --reserved-peers /parity/config/bootnodes.list
+      --nat "extip:${IP}"
+      
+    volumes:
+      - ../config:/parity/config:ro
+      - member:/root/.local/share/io.parity.ethereum/
+    ports:
+      - 8545:8545
+      - 8180:8180
+      - 30303:30303
+
+  monitor:
+    image: buythewhale/ethstats_monitor
+    volumes:
+      - ../config/monitor.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+    depends_on:
+      - nodo
+
+volumes:
+  member:
